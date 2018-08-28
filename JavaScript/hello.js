@@ -1,10 +1,7 @@
-let myButton = document.querySelector("#myButton");
+let quoteButton = document.querySelector("#quoteButton");
 
-myButton.addEventListener("click", e => {
-  console.log("Fikk klikk-event!");
-  let url = "https://breaking-bad-quotes.herokuapp.com/v1/quotes";
-  //let url = "https://www.metaweather.com/api/location/search/?query=oslo";
-  fetch(url, {
+quoteButton.addEventListener("click", e => {
+  fetch("http://bigdata.stud.iie.ntnu.no/sentiment/webresources/quote", {
     method: "GET"
   })
     .then(response => response.json())
@@ -13,8 +10,7 @@ myButton.addEventListener("click", e => {
 });
 
 function handleResponse(json) {
-  let myParagraph = document.querySelector("#myParagraph");
-  console.log(JSON.stringify(json[0].quote));
-  myParagraph.innerHTML = json[0].quote;
-  myParagraph.className = "niceParagraph"; // Change style to something nice
+  let myQuote = document.querySelector("#myQuote");
+  myQuote.innerHTML = json.movie + ": " + json.quote;
+  myQuote.className = "niceParagraph"; // Change style to something nice
 }
